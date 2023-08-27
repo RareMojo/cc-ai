@@ -11,7 +11,7 @@ from flask_limiter.util import get_remote_address
 
 from utils.ai import AI
 from utils.db import DB, DBs, collectData
-from utils.tools import system_template, setup_sys_prompt, authorizeToken
+from utils.tools import system_template, setup_sys_prompt, authorize_token
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -63,7 +63,7 @@ def chat_bot():
         JSON response containing the generated AI response and status information.
     """
     logging.info("Received POST request for 'conversation'.")
-    authorizeToken(API_TOKEN)
+    authorize_token(API_TOKEN)
     data = collectData()
     user_prompt = data.prompt
     conversation = data.conversation_id
@@ -125,7 +125,7 @@ def wipe_memory():
     Returns:
         JSON response indicating success or error in clearing the memory.
     """
-    authorizeToken(API_TOKEN)
+    authorize_token(API_TOKEN)
     data = collectData()
     conversation = data.conversation_id
 

@@ -37,7 +37,7 @@ def setup_sys_prompt(data, dbs):
     return system_message
 
 
-def authorizeToken(api_token):
+def authorize_token(api_token):
     received_token = request.headers.get("Authorization", "").split(" ")[-1]
     if received_token != api_token:
         abort(401, "You are not authorized. Please provide a valid API token.")
